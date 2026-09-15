@@ -1,0 +1,25 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Películas</mat-card-title>
+    <mat-card-subtitle>Populares en The Movie DB · busca por título</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-search-field
+      label="Filtrar por título"
+      placeholder="Ej: Inception"
+      (searchChange)="onSearch($event)"
+    />
+
+    <div class="table-container">
+      <app-loading-overlay [loading]="loading()" message="Cargando películas..." />
+      <app-movie-table
+        [movies]="movies()"
+        [totalResults]="totalResults()"
+        [pageIndex]="pageIndex()"
+        [pageSize]="pageSize"
+        (pageChange)="onPageChange($event)"
+      />
+    </div>
+  </mat-card-content>
+</mat-card>

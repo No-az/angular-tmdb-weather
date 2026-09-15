@@ -1,0 +1,34 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Clima</mat-card-title>
+    <mat-card-subtitle>Clima actual por ciudad · OpenWeather</mat-card-subtitle>
+    <button
+      mat-icon-button
+      type="button"
+      class="refresh-button"
+      matTooltip="Recargar ciudades por defecto"
+      aria-label="Recargar ciudades por defecto"
+      [disabled]="loading()"
+      (click)="loadDefaultCities()"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="toolbar">
+      <app-add-city-form [submitting]="addingCity()" (citySubmit)="addCity($event)" />
+      <app-search-field
+        label="Filtrar por ciudad o estado"
+        placeholder="Ej: Bogotá o lluvia"
+        [debounceMs]="200"
+        (searchChange)="filterTerm.set($event)"
+      />
+    </div>
+
+    <div class="table-container">
+      <app-loading-overlay [loading]="loading()" message="Consultando el clima..." />
+      <app-weather-table [rows]="cities()" [filter]="filterTerm()" (removeCity)="removeCity($event)" />
+    </div>
+  </mat-card-content>
+</mat-card>

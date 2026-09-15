@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="add-city-form" novalidate>
+  <mat-form-field appearance="outline" class="city-input">
+    <mat-label>Agregar ciudad</mat-label>
+    <mat-icon matPrefix>add_location_alt</mat-icon>
+    <input matInput formControlName="cityName" placeholder="Ej: Cartagena" autocomplete="off" />
+    @let cityName = form.controls.cityName;
+    @if (cityName.hasError('required')) {
+      <mat-error>El nombre de la ciudad es obligatorio.</mat-error>
+    } @else if (cityName.hasError('minlength')) {
+      <mat-error>Escribe al menos 2 caracteres.</mat-error>
+    } @else if (cityName.hasError('maxlength')) {
+      <mat-error>Máximo 60 caracteres.</mat-error>
+    } @else if (cityName.hasError('pattern')) {
+      <mat-error>Solo letras, espacios y los signos . , ' -</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-flat-button type="submit" class="submit-button" [disabled]="submitting()">
+    @if (submitting()) {
+      <mat-spinner [diameter]="18" />
+    } @else {
+      <mat-icon>cloud_download</mat-icon>
+    }
+    Consultar
+  </button>
+</form>

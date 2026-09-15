@@ -1,0 +1,32 @@
+<mat-toolbar class="app-toolbar">
+  <mat-icon aria-hidden="true">dashboard</mat-icon>
+  <span class="app-title">{{ title }}</span>
+</mat-toolbar>
+
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" class="app-tabs" mat-stretch-tabs="false" aria-label="Seleccionar dataset">
+  @for (tab of tabs; track tab.path) {
+    <a
+      mat-tab-link
+      [routerLink]="tab.path"
+      routerLinkActive
+      #linkState="routerLinkActive"
+      [active]="linkState.isActive"
+    >
+      <mat-icon class="tab-icon">{{ tab.icon }}</mat-icon>
+      {{ tab.label }}
+    </a>
+  }
+</nav>
+
+<mat-tab-nav-panel #tabPanel>
+  <main class="app-content">
+    <router-outlet />
+  </main>
+</mat-tab-nav-panel>
+
+<footer class="app-footer">
+  Datos de películas provistos por
+  <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>
+  (este producto usa la API de TMDB pero no está avalado ni certificado por TMDB) · Clima por
+  <a href="https://openweathermap.org" target="_blank" rel="noopener">OpenWeather</a>.
+</footer>

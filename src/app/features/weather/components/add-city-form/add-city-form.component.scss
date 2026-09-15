@@ -1,0 +1,26 @@
+.add-city-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 12px;
+}
+
+.city-input {
+  flex: 1 1 240px;
+}
+
+.submit-button {
+  height: 56px;
+  flex: 0 0 auto;
+
+  mat-spinner {
+    display: inline-block;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 599px) {
+  .submit-button {
+    width: 100%;
+  }
+}

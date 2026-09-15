@@ -1,0 +1,21 @@
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>{{ label() }}</mat-label>
+  <mat-icon matPrefix>search</mat-icon>
+  <input
+    matInput
+    type="search"
+    autocomplete="off"
+    [formControl]="searchControl"
+    [placeholder]="placeholder()"
+    [attr.maxlength]="maxLength"
+  />
+  @if (searchControl.value) {
+    <button matSuffix mat-icon-button type="button" aria-label="Limpiar búsqueda" (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+  <mat-hint align="end">{{ searchControl.value.length }} / {{ maxLength }}</mat-hint>
+  @if (searchControl.hasError('maxlength')) {
+    <mat-error>Máximo {{ maxLength }} caracteres.</mat-error>
+  }
+</mat-form-field>

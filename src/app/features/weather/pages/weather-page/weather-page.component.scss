@@ -1,0 +1,21 @@
+.refresh-button {
+  margin-left: auto;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+  margin-top: 16px;
+}
+
+.table-container {
+  position: relative;
+  min-height: 200px;
+}
+
+@media (max-width: 959px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+}

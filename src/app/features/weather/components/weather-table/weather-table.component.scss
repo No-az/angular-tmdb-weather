@@ -1,0 +1,28 @@
+.weather-icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--mat-sys-primary-container);
+}
+
+.city,
+.temperature {
+  display: block;
+  font-weight: 500;
+}
+
+.country,
+.feels-like {
+  display: block;
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.condition::first-letter {
+  text-transform: uppercase;
+}
+
+.actions-cell {
+  text-align: right;
+}

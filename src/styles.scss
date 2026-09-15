@@ -1,0 +1,110 @@
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+/* ---------- Snackbars ---------- */
+.snackbar-error {
+  @include mat.snack-bar-overrides(
+    (
+      container-color: var(--mat-sys-error-container),
+      supporting-text-color: var(--mat-sys-on-error-container),
+      button-color: var(--mat-sys-error),
+    )
+  );
+}
+
+.snackbar-success {
+  @include mat.snack-bar-overrides(
+    (
+      container-color: #1b5e20,
+      supporting-text-color: #ffffff,
+      button-color: #c8e6c9,
+    )
+  );
+}
+
+/* ---------- Tablas responsive ---------- */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.responsive-table {
+  width: 100%;
+
+  .empty-row td {
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+/*
+ * En móvil cada fila se convierte en una "tarjeta": se oculta el encabezado
+ * y cada celda muestra su etiqueta usando el atributo data-label.
+ */
+@media (max-width: 599px) {
+  .responsive-table {
+    thead {
+      display: none;
+    }
+
+    tr.mat-mdc-row,
+    tr.mat-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 12px;
+      height: auto;
+      padding: 12px 8px;
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
+    }
+
+    td.mat-mdc-cell {
+      display: block;
+      grid-column: 2;
+      padding: 2px 0;
+      border-bottom: none;
+      min-width: 0;
+    }
+
+    /* Primera celda (póster/ícono) ocupa la columna izquierda de la tarjeta. */
+    td.mat-mdc-cell:first-child {
+      grid-column: 1;
+      grid-row: 1 / span 5;
+      align-self: start;
+    }
+
+    td[data-label]::before {
+      content: attr(data-label) ': ';
+      font-weight: 500;
+      color: var(--mat-sys-on-surface-variant);
+    }
+
+    .empty-row {
+      display: block;
+    }
+  }
+}

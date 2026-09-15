@@ -1,0 +1,54 @@
+.poster {
+  display: block;
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.poster--placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.title-cell {
+  min-width: 180px;
+}
+
+.title {
+  display: block;
+  font-weight: 500;
+}
+
+.original-title,
+.votes {
+  display: block;
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.rating--high {
+  background: #d7f5dd;
+  color: #1b5e20;
+}
+
+.rating--medium {
+  background: #fff3cd;
+  color: #7a5b00;
+}
+
+.rating--low {
+  background: #fde0e0;
+  color: #8e1c1c;
+}
