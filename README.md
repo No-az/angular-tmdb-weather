@@ -1,5 +1,17 @@
 # Movies & Weather — Prueba técnica Angular
 
+[![CI](https://github.com/No-az/angular-tmdb-weather/actions/workflows/ci.yml/badge.svg)](https://github.com/No-az/angular-tmdb-weather/actions/workflows/ci.yml)
+
+**Demo en vivo:** <https://no-az.github.io/angular-tmdb-weather/>
+
+| Películas (TMDB) | Clima (OpenWeather) |
+|------------------|---------------------|
+| ![Tabla de películas](docs/screenshots/peliculas.png) | ![Tabla de clima](docs/screenshots/clima.png) |
+
+En móvil cada fila se convierte en una tarjeta:
+
+<img src="docs/screenshots/movil.png" alt="Vista móvil" width="320">
+
 Aplicación Angular que consume dos APIs públicas y las presenta en tablas con Angular Material:
 
 | Tab | API | Datos mostrados | Paginación / filtro |

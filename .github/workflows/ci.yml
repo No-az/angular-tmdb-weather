@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build y tests
+    runs-on: ubuntu-latest
+
+    env:
+      # Las claves se leen de los secrets del repositorio si existen.
+      # Si no están definidas, el build igual compila: solo las peticiones a las APIs fallarían en tiempo de ejecución.
+      TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+      CHROME_BIN: /usr/bin/google-chrome
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Generar environment.ts desde las variables de entorno
+        run: npm run config
+
+      - name: Build de producción
+        run: npm run build
+
+      - name: Tests unitarios (Chrome headless)
+        run: npm run test:ci
